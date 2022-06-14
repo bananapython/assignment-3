@@ -2,7 +2,8 @@
 #  Description: Creates class definitions for various types of employees in a company that inherit various characteristics from one another
 #  Student Name: Sean Thomas
 #  Student UT EID: sft372
-
+#  Partner Name: Emily Wang
+#  Partner UT EID: ew6985
 #  Course Name: CS 313E
 #  Unique Number: 86439
 #  Date Created: 06/13/2022
