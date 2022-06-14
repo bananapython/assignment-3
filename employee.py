@@ -13,13 +13,13 @@ import sys
 class Employee():
 
     def __init__(self, **kwargs):
-        self.__name = kwargs.get("name")
-        self.__id = kwargs.get("id")
-        self.__salary = kwargs.get("salary")
+        self.name = kwargs.get("name")
+        self.id = kwargs.get("id")
+        self.salary = kwargs.get("salary")
         
     
     def __str__(self):
-        return self.__name + "'s salary is " + str(self.__salary)
+        return self.name + "'s salary is " + str(self.salary)
 
 
 ############################################################
@@ -30,22 +30,25 @@ class Permanent_Employee(Employee):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.__benefits = kwargs.get("benefits")
+        self.benefits = kwargs.get("benefits")
         
 
 
     def cal_salary(self):
-        if self.__benefits == ["health_insurance"]:
-            return self.__salary * 0.9
-        elif self.__benefits == ["retirement"]:
-            return self.__salary * 0.8
+        if self.benefits == ["health_insurance"]:
+            return self.salary * 0.9
+        elif self.benefits == ["retirement"]:
+            return self.salary * 0.8
+        elif self.benefits == ["retirement", "health_insurance"]:
+            return self.salary * 0.7
         else:
-            return self.__salary * 0.7
+            return self.salary
+            
 
 
 
     def __str__(self):
-        return self.__name + "'s salary is " + str(self.cal_salary())
+        return self.name + "'s salary is " + str(self.cal_salary())
 
 
 ############################################################
@@ -56,13 +59,13 @@ class Manager(Employee):
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.__bonus = kwargs.get("bonus")
+        self.bonus = kwargs.get("bonus")
         
     def cal_salary(self):
-        return self.__salary + self.__bonus
+        return self.salary + self.bonus
 
     def __str__(self):
-        return self.__name + "'s salary is " + str(self.cal_salary())
+        return self.name + "'s salary is " + str(self.cal_salary())
 
 
 ############################################################
@@ -71,14 +74,14 @@ class Manager(Employee):
 class Temporary_Employee(Employee):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.__hours = kwargs.get("hours")
+        self.hours = kwargs.get("hours")
 
     def cal_salary(self):
-        return self.__salary * self.__hours
+        return self.salary * self.hours
 
 
-    def __str__(self):
-        self.__name + "'s salary is " + str(self.cal_salary())
+    def __str__(self): 
+       return self.name + "'s salary is " + str(self.cal_salary())
 
 
 
@@ -91,15 +94,15 @@ class Consultant(Temporary_Employee):
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.__travel = kwargs.get("travel")
+        self.travel = kwargs.get("travel")
         
 
 
     def cal_salary(self):
-        return super().cal_salary() + 1000 * self.__travel
+        return super().cal_salary() + 1000 * self.travel
     
     def __str__(self):
-        self.__name + "'s salary is " + str(self.cal_salary())
+        return self.name + "'s salary is " + str(self.cal_salary())
 
 
     
@@ -112,15 +115,15 @@ class Consultant(Temporary_Employee):
 class Consultant_Manager(Manager, Consultant):
     def __init__(self,  **kwargs):
         super().__init__(**kwargs)
-        Consultant().__init__(self, **kwargs)
+        Consultant.__init__(self, **kwargs)
 
 
     def cal_salary(self):
-        return Consultant().cal_salary(self) + self.__bonus
+        return Consultant.cal_salary(self) + self.bonus
         
 
     def __str__(self):
-        self.__name + "'s salary is " + str(self.cal_salary())
+        return self.name + "'s salary is " + str(self.cal_salary())
 
 
 
@@ -174,3 +177,4 @@ def main():
 
 if __name__ == "__main__":
   main()
+
