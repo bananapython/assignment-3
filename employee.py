@@ -11,6 +11,7 @@
 import sys
 
 class Employee():
+"""The base class for all other class which has a basic salary"""
 
     def __init__(self, **kwargs):
         self.__name = kwargs.get("name")
@@ -27,6 +28,7 @@ class Employee():
 ################################################y############
 
 class Permanent_Employee(Employee):
+"""A subclass of Employee who can receive benefits and whose actual salary depends on the benefits they choose"""
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -53,7 +55,7 @@ class Permanent_Employee(Employee):
 ############################################################
 
 class Manager(Employee):
-    
+"""A subclass of employee that receives both a salary and a bonus"""    
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.__bonus = kwargs.get("bonus")
